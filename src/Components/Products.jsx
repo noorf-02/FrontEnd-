@@ -2,17 +2,29 @@ import React, { useEffect, useState } from "react";
 
 const url = "http://localhost:5000/getProducts";
 function Products() {
-  const [api, setApi] = useState([]);
+  const [ api, setApi ] = useState([]);
+  const [ products, setProducts ] = useState([])
+  const [ category, setCategory ] = useState('all');
   async function fetchApi() {
     const data = await fetch(url);
     const res = await data.json();
     console.log(res);
     setApi(res);
+    setProducts(res);
   }
 
   useEffect(() => {
     fetchApi();
   }, []);
+
+  function filterCategory(category){
+    setCategory(category)
+        if(category==="all"){
+            setApi(products)
+        }else{
+            setApi(products.filter((p)=>p.category===category));
+        }
+  }
 
   return (
     <>
@@ -21,19 +33,19 @@ function Products() {
       </div>
       <div className="wrapper filter-btns flex justify-center gap-3">
         <button
-          onClick={filterCategory("all")}
+          onClick={()=>filterCategory("all")}
           className="bg-green-600 text-white font-medium py-1 px-3 rounded-2xl hover:bg-green-700"
         >
           All
         </button>
         <button
-          onClick={filterCategory("electronics")}
+          onClick={()=>filterCategory("electronic")}
           className="bg-green-600 text-white font-medium py-1 px-3 rounded-2xl hover:bg-green-700"
         >
           Electronics
         </button>
         <button
-          onClick={filterCategory("stationary")}
+          onClick={()=>filterCategory("stationary")}
           className="bg-green-600 text-white font-medium py-1 px-3 rounded-2xl hover:bg-green-700"
         >
           Stationary
