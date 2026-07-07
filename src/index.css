@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer components{
+    .wrapper{
+        @apply w-[90%] mx-auto
+    }
+}

@@ -1,10 +1,9 @@
 import React from 'react'
+import ProductsPage from './Page/ProductsPage'
 
 function App() {
   return (
-    <div>
-      App
-    </div>
+    <ProductsPage/>
   )
 }
 
